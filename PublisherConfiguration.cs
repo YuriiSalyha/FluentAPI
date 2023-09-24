@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FluentAPI
 {
-    internal class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
+    public class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
     {
         public void Configure(EntityTypeBuilder<Publisher> builder)
         {
