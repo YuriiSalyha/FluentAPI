@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Azure;
+using Microsoft.EntityFrameworkCore;
 
 namespace FluentAPI
 {
-    public class AplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Books> Books { get; set; }
@@ -10,7 +11,9 @@ namespace FluentAPI
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer();
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(@"DATA SOURCE=DESKTOP-1LHBQ4A\MSSQLSERVERYURA; DATABASE=FluentAPIHW; UID=sa; PWD=123456789; TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -18,8 +21,6 @@ namespace FluentAPI
             modelBuilder.ApplyConfiguration(new AuthorsConfiguration());
             modelBuilder.ApplyConfiguration(new BooksConfiguration());
             modelBuilder.ApplyConfiguration(new PublisherConfiguration());
-
-            
         }
     }
 }
