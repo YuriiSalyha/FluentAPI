@@ -13,7 +13,7 @@ namespace FluentAPI
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlServer(@"DATA SOURCE=DESKTOP-1LHBQ4A\MSSQLSERVERYURA; DATABASE=FluentAPIHW; UID=sa; PWD=123456789; TrustServerCertificate=True;");
+                .UseSqlServer(ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
